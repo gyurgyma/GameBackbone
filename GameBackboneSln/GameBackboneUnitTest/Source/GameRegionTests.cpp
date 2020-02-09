@@ -255,6 +255,20 @@ BOOST_AUTO_TEST_SUITE(GameRegion_Tests)
 			}
 		}
 
+		BOOST_AUTO_TEST_CASE(addComponentTest)
+		{
+
+			struct GameObject : sf::Sprite
+			{
+				int myData;
+			};
+
+			GameRegion gr;
+			GameObject inputObject;
+			auto& objectRef = gr.addComponent(1, inputObject);
+			gr.removeComponent(objectRef);
+		}
+
 	BOOST_AUTO_TEST_SUITE_END() // end GameRegion_addDrawable_tests
 
 	BOOST_AUTO_TEST_SUITE(GameRegion_removeDrawable_tests)
