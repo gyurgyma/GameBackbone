@@ -4,7 +4,7 @@ jobs:
 
   build:
     docker:
-      - image: buildpack-deps/18.04-curl
+      - image: buildpack-deps:18.04-curl
 
     steps:
       - run: sudo apt install git cmake build-essential -y
