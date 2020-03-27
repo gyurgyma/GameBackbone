@@ -29,8 +29,7 @@ jobs:
             cd boost_1_72_0
             ./bootstrap.sh --with-libraries=test
             sudo ./b2 install
-      
-      - clone
+      - checkout
       - run: |
           mkdir GB_Build_Dir
           cd GB_Build_Dir/
