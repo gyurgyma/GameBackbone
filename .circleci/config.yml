@@ -19,3 +19,20 @@ jobs:
       - run:
           name: "Install SFML"
           command: mkdir SFML && cd SFML && git clone --single-branch --branch 2.5.x https://github.com/SFML/SFML.git && cd SFML && cmake . && make && make install && cd ../..
+      - run:
+          name: "Install Boost"
+          command: |
+            mkdir boost
+            cd boost
+            wget https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz
+            tar -xzf boost_1_72_0.tar.gz
+            cd boost_1_72_0
+            ./bootstrap.sh --with-libraries=test
+            sudo ./b2 install
+      
+      - clone
+      - run: |
+          mkdir GB_Build_Dir
+          cd GB_Build_Dir/
+          cmake ../GameBackboneSln/ -DGAMEBACKBONE_BUILD_TESTS=ON
+          make
