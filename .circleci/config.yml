@@ -3,16 +3,16 @@ version: 2.1
 jobs:
 
   build:
-    docker:
-      - image: ubuntu:18.04
+    machine:
+      image: ubuntu-1604:201903-01
 
     steps:
       - run:
           name: "Install SFML dependencies"
-          command: sudo apt-get install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev cmake
+          command: apt-get install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev cmake
       - run:
           name: "Install test dependencies"
-          command: sudo apt-get install valgrind
+          command: apt-get install valgrind
       - run:
           name: "Install SFML"
           command: mkdir SFML && cd SFML && git clone --single-branch --branch 2.5.x https://github.com/SFML/SFML.git && cd SFML && cmake . && make && sudo make install && cd ../..
