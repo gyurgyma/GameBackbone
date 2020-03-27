@@ -2,7 +2,7 @@
 version: 2.1
 jobs:
 
-  setup:
+  build:
     steps:
       - run:
         name: "Install SFML dependencies"
@@ -11,8 +11,8 @@ jobs:
         name: "Install test dependencies"
         command: sudo apt-get install valgrind
 
-  install_sfml:
-    steps:
+  # install_sfml:
+  #   steps:
       - run: |
         mkdir SFML
         cd SFML
@@ -22,8 +22,8 @@ jobs:
         make
         sudo make install
         cd ../..
-  build_boost:
-    steps:
+  # build_boost:
+  #   steps:
       - run: |
         mkdir boost
         cd boost
@@ -32,8 +32,8 @@ jobs:
         cd boost_1_72_0
         ./bootstrap.sh --with-libraries=test
         sudo ./b2 install
-  build:
-    steps:
+  # build:
+  #  steps:
       - checkout 
       - run:
         command: |
