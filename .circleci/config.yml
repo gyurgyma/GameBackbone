@@ -7,12 +7,13 @@ jobs:
       - image: ubuntu:18.04
 
     steps:
+      - run: apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*
       - run:
           name: "Install SFML dependencies"
-          command: su && apt-get install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libopenal-dev libudev-dev cmake -y
+          command: sudo apt-get install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libopenal-dev libudev-dev cmake -y
       - run:
           name: "Install test dependencies"
-          command: apt-get install valgrind -y
+          command: sudo apt-get install valgrind -y
       - run:
           name: "Install SFML"
           command: mkdir SFML && cd SFML && git clone --single-branch --branch 2.5.x https://github.com/SFML/SFML.git && cd SFML && cmake . && make && sudo make install && cd ../..
