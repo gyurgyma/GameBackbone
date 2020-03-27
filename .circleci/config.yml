@@ -28,7 +28,7 @@ jobs:
             tar -xzf boost_1_72_0.tar.gz
             cd boost_1_72_0
             ./bootstrap.sh --with-libraries=test
-            sudo ./b2 install
+            ./b2 install
       - checkout
       - run: |
           mkdir GB_Build_Dir
