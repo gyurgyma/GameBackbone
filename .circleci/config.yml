@@ -7,6 +7,7 @@ jobs:
       - image: buildpack-deps:18.04-curl
 
     steps:
+      - run: apt-get update
       - run: apt install git cmake build-essential -y
       - run:
           name: "Install SFML dependencies"
