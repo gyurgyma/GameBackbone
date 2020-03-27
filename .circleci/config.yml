@@ -11,15 +11,19 @@ jobs:
       - run: apt install git cmake build-essential -y
       - run: apt-get install freeglut3 freeglut3-dev libglew1.5 libglew1.5-dev libglu1-mesa libglu1-mesa-dev libgl1-mesa-glx libgl1-mesa-dev -y
       - checkout
+      
       - run:
           name: "Install SFML dependencies"
           command: apt install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libopenal-dev libudev-dev libvorbis-dev libflac-dev -y
+      
       - run:
           name: "Install test dependencies"
           command: apt install valgrind -y
+      
       - run:
           name: "Install SFML"
           command: mkdir SFML && cd SFML && git clone --single-branch --branch 2.5.x https://github.com/SFML/SFML.git && cd SFML && cmake . && make && make install && cd ../..
+      
       - run:
           name: "Install Boost"
           command: |
@@ -31,9 +35,23 @@ jobs:
             ./bootstrap.sh --with-libraries=test
             ./b2 install
             cd ..
+
       - run: |
           mkdir GB_Build_Dir
           cd GB_Build_Dir/
           cmake ../GameBackboneSln/ -DGAMEBACKBONE_BUILD_TESTS=ON
           make
-          make test
+          cd ..
+
+      - run: |
+          apt install xvfb
+
+      - run: |
+          cd GameBackboneSln/build/bin
+          xvfb-run ./GameBackboneUnitTest
+          cd ../../..
+          
+      - run: |
+          cd GameBackboneSln/build/bin
+          xvfb-run valgrind ./GameBackboneUnitTest
+          cd ../../..
