@@ -8,11 +8,11 @@ jobs:
 
     steps:
       - run:
-        name: "Install SFML dependencies"
-        command: sudo apt-get install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev cmake
+          name: "Install SFML dependencies"
+          command: sudo apt-get install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libglew1.5-dev libjpeg8-dev libsndfile1-dev libopenal-dev libudev-dev cmake
       - run:
-        name: "Install test dependencies"
-        command: sudo apt-get install valgrind
+          name: "Install test dependencies"
+          command: sudo apt-get install valgrind
       - run:
-        name: "Install SFML"
-        command: mkdir SFML && cd SFML && git clone --single-branch --branch 2.5.x https://github.com/SFML/SFML.git && cd SFML && cmake . && make && sudo make install && cd ../..
+          name: "Install SFML"
+          command: mkdir SFML && cd SFML && git clone --single-branch --branch 2.5.x https://github.com/SFML/SFML.git && cd SFML && cmake . && make && sudo make install && cd ../..
