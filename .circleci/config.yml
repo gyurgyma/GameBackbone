@@ -18,4 +18,4 @@ jobs:
           command: apt install valgrind -y
       - run:
           name: "Install SFML"
-          command: mkdir SFML && cd SFML && git clone --single-branch --branch 2.5.x https://github.com/SFML/SFML.git && cd SFML && cmake . && make && sudo make install && cd ../..
+          command: mkdir SFML && cd SFML && git clone --single-branch --branch 2.5.x https://github.com/SFML/SFML.git && cd SFML && cmake . && make && make install && cd ../..
