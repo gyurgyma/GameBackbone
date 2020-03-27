@@ -10,6 +10,7 @@ jobs:
       - run: apt-get update
       - run: apt install git cmake build-essential -y
       - run: apt-get install freeglut3 freeglut3-dev libglew1.5 libglew1.5-dev libglu1-mesa libglu1-mesa-dev libgl1-mesa-glx libgl1-mesa-dev -y
+      - checkout
       - run:
           name: "Install SFML dependencies"
           command: apt install libpthread-stubs0-dev libx11-dev libxrandr-dev libfreetype6-dev libopenal-dev libudev-dev libvorbis-dev libflac-dev -y
@@ -29,7 +30,7 @@ jobs:
             cd boost_1_72_0
             ./bootstrap.sh --with-libraries=test
             ./b2 install
-      - checkout
+            cd ..
       - run: |
           mkdir GB_Build_Dir
           cd GB_Build_Dir/
