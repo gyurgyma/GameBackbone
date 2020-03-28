@@ -48,10 +48,12 @@ jobs:
 
       - run: |
           cd GameBackboneSln/build/bin
-          xvfb-run ./GameBackboneUnitTest
+          Xvfb :99 &
+          export DISPLAY=:99
+          ./GameBackboneUnitTest
           cd ../../..
           
       - run: |
           cd GameBackboneSln/build/bin
-          xvfb-run valgrind ./GameBackboneUnitTest
+          valgrind ./GameBackboneUnitTest
           cd ../../..
